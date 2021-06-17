@@ -8,6 +8,7 @@ const requireLogin = require('../middlewares/requireLogin');
 router.get('/allposts',requireLogin,(req,res)=>{
  Post.find()
  .populate('postedBy',"_id name")
+ .sort('-createdAt')
  .then(posts=>{
   res.json({posts})
  })
@@ -19,6 +20,7 @@ router.get('/allposts',requireLogin,(req,res)=>{
 router.get('/getsubposts',requireLogin,(req,res)=>{
   Post.find({postedBy:{$in:req.user.following}})          //checking in following array if the user is present or not    //checking posted by in following
   .populate('postedBy',"_id name")
+  .sort('-createdAt')
   .then(posts=>{
    res.json({posts})
   })

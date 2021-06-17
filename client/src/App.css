@@ -48,3 +48,6 @@ h2 {
 .material-icons {
   cursor: pointer;
 }
+.collection-item {
+  width: 100%;
+}
